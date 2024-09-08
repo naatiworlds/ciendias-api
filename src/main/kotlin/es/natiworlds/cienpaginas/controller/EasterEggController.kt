@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
+@CrossOrigin(origins = ["https://cienpaginas.netlify.app/"]) // Permitir el origen del frontend
 @RequestMapping("/api/easteregg")
 class EasterEggController @Autowired constructor(
 	private val easterEggService: EasterEggService
