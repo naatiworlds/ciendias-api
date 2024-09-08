@@ -15,8 +15,6 @@ WORKDIR /app
 # Copiar los archivos del proyecto
 COPY . .
 
-# Compilar la aplicación sin ejecutar tests
-RUN gradle clean build -x test
 
 # Segunda fase: usar una imagen ligera de OpenJDK 22 para ejecutar el JAR
 FROM eclipse-temurin:22-jdk-jammy
