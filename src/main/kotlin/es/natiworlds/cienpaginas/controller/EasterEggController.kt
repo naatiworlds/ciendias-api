@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@CrossOrigin(origins = ["http://localhost:8081"]) // Permitir el origen del frontend
 @RequestMapping("/api/easteregg")
 class EasterEggController @Autowired constructor(
 	private val easterEggService: EasterEggService
@@ -32,6 +31,7 @@ class EasterEggController @Autowired constructor(
 	): ResponseEntity<String> {
 		val isValid = easterEggService.validateEasterEgg(word, easterEggNumber)
 		return if (isValid) {
+			easterEggService.unlockNextEasterEgg(easterEggNumber)
 			ResponseEntity.ok("¡WOW! Has encontrado el easter egg número $easterEggNumber.")
 		} else {
 			ResponseEntity.badRequest().body("No has encontrado ningún easter egg, lo siento.")

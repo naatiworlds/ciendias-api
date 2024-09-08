@@ -22,6 +22,14 @@ class EasterEggService(
         val easterEgg = getEasterEgg(easterEggNumber)
         return easterEgg?.easterEggWorld?.equals(word, ignoreCase = true) == true
     }
+    fun unlockNextEasterEgg(currentEasterEggNumber: Int) {
+        val easterEggNumber = currentEasterEggNumber
+        val nextLevel = getEasterEgg(easterEggNumber)
+        nextLevel?.let {
+            it.isCompleted = true
+            easterEggRepository.save(it)
+        }
+    }
     fun deleteEasterEggById(id: Long){
         return easterEggRepository.deleteById(id)
     }
