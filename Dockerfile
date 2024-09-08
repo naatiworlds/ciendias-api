@@ -23,7 +23,7 @@ FROM eclipse-temurin:22-jdk-jammy
 WORKDIR /app
 
 # Copiar el archivo JAR generado desde la fase de construcción
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build build/libs/cienpaginas-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto de la aplicación
 EXPOSE 8080
