@@ -2,7 +2,7 @@
 FROM amazoncorretto:21-alpine-jdk
 
 # Copiar el JAR generado en la imagen
-COPY build/libs/cienpaginas-0.0.1-SNAPSHOT.jar app.jar
+COPY cienpaginas-0.0.1-SNAPSHOT.jar app.jar
 
 # Configurar el comando de entrada para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "/app.jar"]
