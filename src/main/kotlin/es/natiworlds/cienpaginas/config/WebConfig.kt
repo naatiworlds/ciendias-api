@@ -9,7 +9,7 @@ class WebConfig : WebMvcConfigurer {
 
 	override fun addCorsMappings(registry: CorsRegistry) {
 		registry.addMapping("/**")
-			.allowedOrigins("https://cienpaginas.netlify.app") // Exacto dominio del frontend
+			.allowedOrigins("https://ciendias-web.onrender.com") // Exacto dominio del frontend
 			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 			.allowedHeaders("Authorization", "Content-Type", "X-Requested-With")
 			.allowCredentials(true)
