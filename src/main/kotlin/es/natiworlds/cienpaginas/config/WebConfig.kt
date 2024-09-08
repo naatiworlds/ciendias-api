@@ -11,7 +11,7 @@ class WebConfig : WebMvcConfigurer {
 
 	override fun addCorsMappings(registry: CorsRegistry) {
 		registry.addMapping("/**")
-			.allowedOrigins(" https://cienpaginas.netlify.app/") // Origen permitido (tu frontend)
+			.allowedOrigins("https://cienpaginas.netlify.app/") // Origen permitido (tu frontend)
 			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 			.allowedHeaders("*") // Permitir todos los encabezados
 			.allowCredentials(true)
