@@ -15,7 +15,7 @@ RUN gradle build -x test --no-daemon --stacktrace || return 0
 COPY . .
 
 # Compilar la aplicación (sin ejecutar los tests)
-RUN gradle clean build -x test --no-daemon --stacktrace
+RUN gradle clean build
 
 # Fase 2: Crear una imagen ligera para ejecutar el JAR
 FROM eclipse-temurin:22-jdk-jammy
