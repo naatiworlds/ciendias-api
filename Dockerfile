@@ -1,33 +1,23 @@
-# Fase 1: Construcción de la aplicación usando Gradle y OpenJDK 22
-FROM gradle:8.8-jdk22 AS build
+# Usa la imagen base con JDK 22
+FROM openjdk:22-jdk-alpine AS build
 
-# Establecer el directorio de trabajo dentro del contenedor
+# Copia los archivos de tu proyecto y ejecuta la compilación de Gradle
 WORKDIR /app
-
-# Cachear las dependencias de Gradle
-COPY build.gradle.kts settings.gradle.kts ./
-COPY gradle ./gradle
-
-# Descargar las dependencias sin construir el proyecto (para usar el caché)
-RUN gradle build -x test --no-daemon --stacktrace || return 0
-
-# Copiar el resto del código del proyecto
 COPY . .
 
-# Compilar la aplicación (sin ejecutar los tests)
-RUN gradle clean build -x test --no-daemon --stacktrace || return 0
+# Compila la aplicación sin ejecutar los tests
+RUN ./gradlew clean build -x test
 
-# Fase 2: Crear una imagen ligera para ejecutar el JAR
-FROM eclipse-temurin:22-jdk-jammy
+# Fase final: ejecutar la aplicación con OpenJDK 22
+FROM openjdk:22-jdk-alpine
 
-# Establecer el directorio de trabajo en el contenedor final
 WORKDIR /app
 
-# Copiar el archivo JAR compilado desde la fase de construcción
-COPY --from=build /app/build/libs/*.jar app.jar
+# Copia el archivo JAR generado
+COPY --from=build /app/build/libs/cienpaginas-0.0.1-SNAPSHOT.jar app.jar
 
-# Exponer el puerto 8080
+# Expone el puerto de la aplicación
 EXPOSE 8080
 
-# Comando de inicio para ejecutar la aplicación Spring Boot
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Ejecuta la aplicación
+ENTRYPOINT ["java", "-jar", "app.jar"]
