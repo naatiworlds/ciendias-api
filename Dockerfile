@@ -1,5 +1,5 @@
 # Imagen base de Gradle para construir la aplicación
-FROM gradle:8.8.1-jdk17 AS build
+FROM gradle:8.8.1-jdk22 AS build
 WORKDIR /app
 
 # Copia todos los archivos del proyecto a la imagen
@@ -8,8 +8,8 @@ COPY --chown=gradle:gradle . .
 # Construye el proyecto y genera el archivo JAR
 RUN gradle clean build -x test
 
-# Imagen ligera de Java para ejecutar el JAR (Usamos JDK 17)
-FROM eclipse-temurin:17-jdk-jammy
+# Imagen ligera de OpenJDK 22 para ejecutar el JAR
+FROM eclipse-temurin:22-jdk-jammy
 
 # Establece el directorio de trabajo en el contenedor
 WORKDIR /app
