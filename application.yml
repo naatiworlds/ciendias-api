@@ -1,0 +1,7 @@
+spring:
+  web:
+    cors:
+      allowed-origins: "https://ciendias-web.onrender.com"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
