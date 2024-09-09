@@ -1,3 +1,4 @@
+/*
 package es.natiworlds.cienpaginas.config
 
 import org.springframework.context.annotation.Configuration
@@ -15,3 +16,4 @@ class WebConfig : WebMvcConfigurer {
 			.allowCredentials(true)  // Permitir cookies o autenticación basada en sesión
 	}
 }
+*/
