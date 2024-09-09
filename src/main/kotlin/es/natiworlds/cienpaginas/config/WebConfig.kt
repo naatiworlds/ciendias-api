@@ -1,19 +1,26 @@
-/*
 package es.natiworlds.cienpaginas.config
 
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
+@EnableWebMvc
 class WebConfig : WebMvcConfigurer {
 
-	override fun addCorsMappings(registry: CorsRegistry) {
-		registry.addMapping("/**")  // Permite todas las rutas
-			.allowedOrigins("https://cienpaginas.netlify.app")  // Permitir solo tu frontend
-			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Métodos permitidos
-			.allowedHeaders("*")  // Permitir todos los encabezados
-			.allowCredentials(true)  // Permitir cookies o autenticación basada en sesión
+	@Bean
+	fun corsConfigurer(): WebMvcConfigurer {
+		return object : WebMvcConfigurer {
+			override fun addCorsMappings(registry: CorsRegistry) {
+				registry.addMapping("/**")
+					.allowedOrigins("https://ciendias-web.onrender.com")  // Origen permitido
+					.allowedMethods("GET", "POST", "PUT", "DELETE")
+					.allowedHeaders("*")
+					.allowCredentials(true)
+			}
+		}
 	}
 }
-*/
+

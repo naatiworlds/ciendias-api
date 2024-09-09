@@ -13,5 +13,5 @@ data class EasterEgg (
     val easterEggNumber: Int = 0,
     val easterEggWorld: String = "",
     val reward: String = "",
-    var isCompleted: Boolean = false
+    var isComplete: Boolean = false
 )

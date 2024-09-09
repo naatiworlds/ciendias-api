@@ -26,7 +26,7 @@ class EasterEggService(
         val easterEggNumber = currentEasterEggNumber
         val nextLevel = getEasterEgg(easterEggNumber)
         nextLevel?.let {
-            it.isCompleted = true
+            it.isComplete = true
             easterEggRepository.save(it)
         }
     }
