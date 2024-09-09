@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class LevelController(
 	private val levelService: LevelService
 ) {
-	@CrossOrigin(origins = ["https://ciendias-web.onrender.com/"], allowedHeaders = ["*"], allowCredentials = "true")
+	@CrossOrigin(origins = ["https://ciendias-web.onrender.com/"])
 	@GetMapping
 	fun getAllEasterEggs(): ResponseEntity<List<Level>> {
 		val levels = levelService.getAllLevels()

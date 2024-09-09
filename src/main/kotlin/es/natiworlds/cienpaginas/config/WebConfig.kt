@@ -13,6 +13,5 @@ class WebConfig : WebMvcConfigurer {
 		registry.addMapping("/**")
 			.allowedOrigins("https://ciendias-web.onrender.com") // Exacto dominio del frontend
 			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-			.allowCredentials(true)
 	}
 }
