@@ -11,7 +11,7 @@ class WebConfig : WebMvcConfigurer {
 
 	override fun addCorsMappings(registry: CorsRegistry) {
 		registry.addMapping("/**")
-			.allowedOrigins("https://ciendias-web.onrender.com") // Exacto dominio del frontend
-			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+			.allowedOrigins("*") // Exacto dominio del frontend
+			.allowedMethods("*")
 	}
 }
