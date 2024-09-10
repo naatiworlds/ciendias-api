@@ -9,18 +9,21 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = ["https://ciendias-web.onrender.com"])
 @RequestMapping("/api/levels")
 class LevelController(
 	private val levelService: LevelService
 ) {
 	@GetMapping
+	@CrossOrigin(origins = ["https://ciendias-web.onrender.com"])
 	fun getAllEasterEggs(): ResponseEntity<List<Level>> {
 		val levels = levelService.getAllLevels()
 		return ResponseEntity.ok(levels)
 	}
 
 	@PostMapping("/validate")
+	@CrossOrigin(origins = ["https://ciendias-web.onrender.com"])
+
 	fun validateLevel(
 		@RequestParam word: String,
 		@RequestParam levelNumber: Int
@@ -34,12 +37,16 @@ class LevelController(
 		}
 	}
 	@PostMapping("/load")
+	@CrossOrigin(origins = ["https://ciendias-web.onrender.com"])
+
 	fun addLevel(@RequestBody level: Level): ResponseEntity<Level> {
 		val savedLevel = levelService.saveLevel(level)
 		return ResponseEntity.ok(savedLevel)
 	}
 
 	@GetMapping("/{levelNumber}")
+	@CrossOrigin(origins = ["https://ciendias-web.onrender.com"])
+
 	fun getLevel(@PathVariable levelNumber: Int): ResponseEntity<Level> {
 		val level = levelService.getLevel(levelNumber)
 		return if (level != null) {
@@ -49,6 +56,8 @@ class LevelController(
 		}
 	}
 	@DeleteMapping("/remove/{id}")
+	@CrossOrigin(origins = ["https://ciendias-web.onrender.com"])
+
 	fun removeEasterEgg(@PathVariable id: Long): ResponseEntity<String> {
 		return try {
 			levelService.deleteEasterEggById(id)
